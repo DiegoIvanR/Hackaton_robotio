@@ -75,9 +75,12 @@ void setup() {
  *                  Main loop 
  ***********************************************/
 void loop() {
-    int dutyCycle = 255;
-    ledcWrite(pwmChannel, dutyCycle); 
+  while(readUltrasonic(U_sensorFront)<2 && readUltrasonic(U_sensorLeft)<2 && readUltrasonic(U_sensorRight)<2){
+    while(readUltrasonic(U_sensorFront)>readUltrasonic(U_sensorLeft) && readUltrasonic(U_sensorFront)>readUltrasonic(U_sensorRight)){
+      moveForward(255,motorA,motorB);
+    }
+    if(readUltrasonic(U_sensorFront)>readUltrasonic(U_sensorLeft)){
 
-    digitalWrite(motorA.in1, HIGH);
-    digitalWrite(motorA.in2, LOW);
+    }
+  }
 }
